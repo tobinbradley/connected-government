@@ -51,9 +51,17 @@ header {
 
 footer {
     hr {
-        margin: 100px 0 0;
+        border: 0;
+        height: 3px;
+        margin: 100px 0 3px;
+        box-shadow: 3px 3px 6px black;
+        .div-gradient;
     }
     a {
+        color: white;
+        text-shadow: 2px 2px 5px black;
+    }
+    a:hover {
         color: white;
     }
 }
@@ -115,5 +123,12 @@ footer {
     .btn {
         border: 0;
         font-weight: bold;
+    }
+    footer {
+        hr {
+            border: 0;
+            border-bottom: 1px dashed #ccc;
+            background: #999;
+        }
     }
 }
