@@ -8,7 +8,6 @@ $googleFeed = "https://docs.google.com/spreadsheet/pub?key=0AnX_8GeOg1_3dEJOcjVE
 $feed = "doc.csv";
 
 // Cache google doc csv locally, refreshing if older than 5 minutes
-$cachefile = 'doc.csv';
 $cachetime = 300;
 if (!file_exists($feed) || time() - $cachetime > filemtime($feed)) {
     file_put_contents($feed, file_get_contents($googleFeed));
