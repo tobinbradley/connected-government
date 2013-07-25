@@ -1,10 +1,18 @@
 <?php
 // Script modified from https://gist.github.com/Kostanos/5639609
-
+// Mostly just added the caching bit
 header('Content-type: application/json');
 
-// Set your CSV feed
-$feed = "https://docs.google.com/spreadsheet/pub?key=0AnX_8GeOg1_3dEJOcjVEcXFZWE5oRklMV1JGc1lrTHc&output=csv";
+// Set remote and local sources
+$googleFeed = "https://docs.google.com/spreadsheet/pub?key=0AnX_8GeOg1_3dEJOcjVEcXFZWE5oRklMV1JGc1lrTHc&output=csv";
+$feed = "doc.csv";
+
+// Cache google doc csv locally, refreshing if older than 5 minutes
+$cachefile = 'doc.csv';
+$cachetime = 300;
+if (!file_exists($feed) || time() - $cachetime > filemtime($feed)) {
+    file_put_contents($feed, file_get_contents($googleFeed));
+}
 
 // Arrays we'll use later
 $keys = array();
