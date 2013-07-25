@@ -1,0 +1,39 @@
+<% if (rc.Status.trim().length === 0) rc.Status = "pending"; %>
+<div class="action <%= getTag(rc.Status) %>">
+    <table class="table table-condensed">
+        <caption class="text-left"><%= rc.Title %></caption>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Tags</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><%= rc.Status.toUpperCase() %>
+                </td>
+                <td><%= rc.Tags %></td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="2">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2"><%= rc.Description %></td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th colspan="2">Contact</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2"><%= rc.Contact %></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
