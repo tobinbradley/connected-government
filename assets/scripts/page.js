@@ -26,7 +26,7 @@ $(document).ready(function() {
         cache: false,
         success: function (data) {
             var split = Math.ceil(data.length / 2);
-            $.each(data, function(i, item) {
+            _.each(data, function(item, i) {
                 if (i < split) {
                     report("action", item, ".actions-col1");
                 }
@@ -73,7 +73,7 @@ if (typeof String.prototype.trim !== 'function') {
 // https://github.com/Gazler/Underscore-Template-Loader
 (function () {
     var templateLoader = {
-        templateVersion: "31916",
+        templateVersion: "8031",
         templateName: "cgplan-",
         templates: {},
         loadRemoteTemplate: function (templateName, filename, callback) {
