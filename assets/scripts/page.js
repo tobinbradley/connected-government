@@ -73,7 +73,7 @@ if (typeof String.prototype.trim !== 'function') {
 // https://github.com/Gazler/Underscore-Template-Loader
 (function () {
     var templateLoader = {
-        templateVersion: "27858",
+        templateVersion: "48413",
         templateName: "cgplan-",
         templates: {},
         loadRemoteTemplate: function (templateName, filename, callback) {
