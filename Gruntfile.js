@@ -14,6 +14,8 @@ module.exports = function (grunt) {
     var jsFiles = [
             'assets/scripts/vendor/underscore-min.js',
             'assets/scripts/vendor/bootstrap/bootstrap-button.js',
+            'assets/scripts/vendor/bootstrap/bootstrap-tooltip.js',
+            'assets/scripts/vendor/bootstrap/bootstrap-popover.js',
             'assets/scripts/page.js'
         ];
 

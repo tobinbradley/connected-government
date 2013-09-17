@@ -1,22 +1,20 @@
 _.templateSettings.variable = "rc";
+var actions;
 
 $(document).ready(function() {
 
+    // Tooltips
+    $('a[rel=popover]').popover({delay: { show: 250, hide: 100 }});
+
     // filtering
     $('.btn').on("click", function() {
-        if ($(this).hasClass("btn-complete")) {
-            $('.pending, .started').hide();
-            $('.complete').show();
+        var data = actions;
+        if ($(this).data("status")) {
+            var status = $(this).data("status");
+            data = _.filter(actions, function(action) { return action.Status.toUpperCase() === status; });
         }
-        else if ($(this).hasClass("btn-started")) {
-            $('.pending, .complete').hide();
-            $('.started').show();
-        }
-        else {
-            $('.pending, .complete, .started').show();
-        }
+        reports(data);
     });
-
 
     // Get JSON from Google Docs and do magic things
     $.ajax({
@@ -25,19 +23,27 @@ $(document).ready(function() {
         dataType: 'json',
         cache: false,
         success: function (data) {
-            var split = Math.ceil(data.length / 2);
-            _.each(data, function(item, i) {
-                if (i < split) {
-                    report("action", item, ".actions-col1");
-                }
-                else {
-                    report("action", item, ".actions-col2");
-                }
-            });
+            var sdata = _(data).sortBy("Title");
+            actions = sdata;
+            reports(sdata);
         }
     });
 
 });
+
+// create reports
+function reports(data) {
+    $('.actions-col1, .actions-col2').empty();
+    var split = Math.ceil(data.length / 2);
+    _.each(data, function(item, i) {
+        if (i < split) {
+            report("action", item, ".actions-col1");
+        }
+        else {
+            report("action", item, ".actions-col2");
+        }
+    });
+}
 
 // Display detailed information
 function report(q, data, element) {
@@ -73,7 +79,7 @@ if (typeof String.prototype.trim !== 'function') {
 // https://github.com/Gazler/Underscore-Template-Loader
 (function () {
     var templateLoader = {
-        templateVersion: "48413",
+        templateVersion: "98739",
         templateName: "cgplan-",
         templates: {},
         loadRemoteTemplate: function (templateName, filename, callback) {
